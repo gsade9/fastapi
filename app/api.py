@@ -7,6 +7,15 @@ from .routers import post, users, auth, vote
 from .config import settings
 from fastapi.middleware.cors import CORSMiddleware
 
+
+from .database import engine
+from .routers import post, users, auth, vote
+from .config import settings
+
+# Create tables
+models.Base.metadata.create_all(bind=engine)
+
+
 print(settings.database_username)
 
 
@@ -33,4 +42,4 @@ app.include_router(vote.router)
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    return {"Hello": "Wor000000ld"}

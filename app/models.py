@@ -3,6 +3,10 @@ from sqlalchemy import Column, Integer, String, Boolean, TIMESTAMP, text, Foreig
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 from sqlalchemy.orm import relationship
 
+from sqlalchemy import Column, Integer, String, TIMESTAMP
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.sql import func
+
 
 class Post(Base):
     __tablename__ = "posts"
@@ -35,3 +39,15 @@ class Vote(Base):
         "users.id", ondelete="CASCADE"), primary_key=True)
     post_id = Column(Integer, ForeignKey(
         "users.id", ondelete="CASCADE"), primary_key=True)
+
+
+Base = declarative_base()
+
+
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    email = Column(String, unique=True, index=True, nullable=False)
+    password = Column(String, nullable=False)
+    created_at = Column(TIMESTAMP(timezone=True), server_default=func.now())
