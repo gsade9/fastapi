@@ -8,6 +8,6 @@ jobs:
     steps:
       - name: pulling git repo
         uses: actions/checkout@v2
-      - name: say hi to gowtham  
+
+      - name: say hi to gowtham
         run: echo "hello gowtham"
-  
