@@ -118,8 +118,10 @@ jobs:
           username: ${{ secrets.PROD_USERNAME }}
           password: ${{ secrets.PROD_PASSWORD }}
           script: |
-            cd app/src
-            git pull
+            cd /home/ubuntu/app/src
+            git fetch origin
+            git reset --hard origin/main
+            git clean -fd
             echo ${{ secrets.PROD_PASSWORD }} | sudo -S systemctl restart api
 
 
