@@ -42,4 +42,4 @@ app.include_router(vote.router)
 
 @app.get("/")
 def read_root():
-    return {"Hello": "Wor000000ld"}
+    return {"message": "Hello World successfully deployed from CI/CD pipeline"}
