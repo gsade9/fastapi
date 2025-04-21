@@ -49,11 +49,13 @@ jobs:
         run: pip install -r requirements.txt
 
       
-      - name: Create test database manually
+      - name: Create test database manually if not exists
         run: |
           sudo apt-get update
           sudo apt-get install -y postgresql-client
+          PGPASSWORD=${{ secrets.DATABASE_PASSWORD }} psql -h localhost -U ${{ secrets.DATABASE_USERNAME }} -p 5432 -tc "SELECT 1 FROM pg_database WHERE datname = '${{ secrets.DATABASE_NAME }}_test'" | grep -q 1 || \
           PGPASSWORD=${{ secrets.DATABASE_PASSWORD }} psql -h localhost -U ${{ secrets.DATABASE_USERNAME }} -p 5432 -c "CREATE DATABASE ${{ secrets.DATABASE_NAME }}_test;"
+
 
       - name: Run Pytest
         run: |
