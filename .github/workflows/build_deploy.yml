@@ -118,7 +118,7 @@ jobs:
           username: ${{ secrets.PROD_USERNAME }}
           password: ${{ secrets.PROD_PASSWORD }}
           script: |
-            cd /home/ubuntu/app/src
+            cd /home/gowtham/app
             git fetch origin
             git reset --hard origin/main
             git clean -fd
